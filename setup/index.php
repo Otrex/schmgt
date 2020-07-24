@@ -15,9 +15,9 @@ autoload(
 );
 
 # Creates the htaccess file
-create("/schmgt.edu/public");
+create("/schmgt/public");
 
 # Sets up the root path
-setDirectories("http://localhost/schmgt.edu");
+setDirectories("http://localhost/schmgt");
 
 ?>

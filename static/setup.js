@@ -2,5 +2,5 @@
 
 const schmgt = {};
 
-schmgt.rootDir = 'http://localhost/schmgt.edu'; 
+schmgt.rootDir = 'http://localhost/schmgt'; 
 

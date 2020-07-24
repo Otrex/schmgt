@@ -2,8 +2,8 @@
 
 /* This is created By SetDirectories */ 
 
-$indexDir = 'http://localhost/schmgt.edu/public'; 
+$indexDir = 'http://localhost/schmgt/public'; 
 
-$rootDir = 'http://localhost/schmgt.edu/'; 
+$rootDir = 'http://localhost/schmgt/'; 
 
 ?>
