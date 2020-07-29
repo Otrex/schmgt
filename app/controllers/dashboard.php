@@ -39,10 +39,9 @@ class Dashboard extends Controller
                    //"https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"
                 ],//add the js src to head
                 [
-                    "../static/setup.js",
-                    "../static/dashboard/js/angular-app.js",
-                    "../static/dashboard/js/angular-controllers.js",
-                    "../static/dashboard/js/angular-directives.js"
+                    "../static/dashboard/js/app-setup.js",
+                    "../static/dashboard/js/app-controllers.js",
+                    "../static/dashboard/js/app-directives.js"
                 ]
             );
             //$this->view("dashboard/index", []);

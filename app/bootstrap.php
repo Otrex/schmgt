@@ -8,8 +8,6 @@ require_once 'core/Connection.php';
 
 require_once 'core/Controller.php';
 
-require_once 'core/Globals.php';
-
 require_once 'core/Models.php';
 
 require_once 'core/Request.php';

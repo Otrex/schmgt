@@ -90,19 +90,6 @@
             die();
         }
 
-        public static function redirectScript($url="/")
-        {
-            global $indexDir;
-
-            $p = $indexDir;
-
-            if ($url == "home" ||$url == "/")
-            {
-                header ("Location: ..");
-            }
-            
-            echo "<script> location.assign('".$p.$url."');</script>";
-        }
     }
 
 //     //////////////////////////////////////////////////////////////////////

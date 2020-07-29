@@ -5,13 +5,11 @@ app.config(function($routeProvider, $locationProvider) {
 
     $locationProvider.hashPrefix('');
 
-    var loc = schmgt.rootDir + "/static/dashboard/"
-
     $routeProvider
 
     .when("/", {
 
-        templateUrl: loc + "templates/dashboard.htm",
+        templateUrl: "../static/dashboard/templates/dashboard.htm",
 
         controller:"dashboardController"
 

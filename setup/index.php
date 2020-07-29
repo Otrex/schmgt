@@ -5,8 +5,6 @@ require_once "autoloader.php";
 
 require_once "htaccess-setup.php";
 
-require_once "dirsetter.php";
-
 require_once "dbObjCreator.php";
 
 # Loads Up neccessary Dependencies
@@ -18,9 +16,6 @@ autoload(
 
 # Creates the htaccess file
 create("/schmgt/public");
-
-# Sets up the root path
-setDirectories("http://localhost/schmgt");
 
 # Set up Db
 setUpDb("127.0.0.1","schmgt","root", "");

@@ -13,15 +13,6 @@ class Controller
 
         echo "Page not in use click <a href='dashboard'>Here </a>";
     }
-        
-    static function rootpath($src)
-    {
-        global $rootDir;
-        
-        //print_r($rootDir.$src);
-        return $rootDir.$src;
-
-    }
     
     function model($model_name)
     {
