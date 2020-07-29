@@ -9,6 +9,7 @@
 */
     trait Session
     {
+        
         public static function isLoggedIn()
         {
             if (isset($_SESSION["usrId"]))
@@ -43,7 +44,8 @@
     {
         public static function redirect_to_home ($msg = 0)
         {
-            echo $msg;
+            //echo $msg;
+
             if ($msg != 0)
             {
                 header ("Location: ../home/index?msg=$msg");
@@ -54,7 +56,7 @@
 
             }
 
-           // header ("Location: ..");
+            header ("Location: ..");
 
             die();
             
@@ -76,6 +78,13 @@
 
         public static function redirect_to($r, $msg=null)
         {
+            if (stristr($r, ".htm") || stristr($r, ".html"))
+            {
+                header ("Location: $r".($msg ? "?msg=".$msg : ""));
+
+                die();
+            }
+
             header ("Location: $r".($msg ? "/home?msg=".$msg : ""));
 
             die();
@@ -129,6 +138,11 @@
         public static function test($x = "Working")
         {
             return $x;
+        }
+
+        public function randomizer($key, $partlength = 100)
+        {
+            return substr($key, 1, $partlength).(floor(rand()*(1/10000000))).substr($key, 6, $partlength);
         }
  
         public static function getPosted(){

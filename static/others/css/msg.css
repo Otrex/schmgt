@@ -1,0 +1,25 @@
+.info {
+    height:80px;
+    width:100%;
+    background: linear-gradient(blue, rgba(255,255,255, .1));
+    color: white;
+    vertical-align: middle;
+    text-align: center;
+    display: none;
+    position: absolute;
+    top:0px;
+    padding-top: 15px;
+}
+
+.info-404, .info-606, .info-505 {
+    background: linear-gradient(red, rgba(255,255,255, .1));
+}
+
+.info-500, .info-600 {
+    background: linear-gradient(green, rgba(255,255,255, .1));
+}
+
+
+.active {
+    display: block;
+}

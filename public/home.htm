@@ -2,38 +2,55 @@
 
 <section id="main_page_container">
 
-    <a href="#sign-up.htm"> Sign - Up </a>
-    <div class="container">
+    <!-- <a href="#sign-up.htm"> Sign - Up </a> -->
+
+    <div class="container p-t-80">
         
         <div class="row">
 
             <div class="col">
 
+                <div></div>
+
             </div>
 
             <div class="col">
 
-                <div class="container-signup-login">
+                <div class="container-signup-login container">
 
-                    <div class="container-login">
+                    <div class="container-login m-b-50">
+
+                        <h2>Log In</h2>
 
                         <form method="POST" action="login">
 
-                        <input type="text" placeholder="Username or Email" name="user" id="user" class="form-control login user">
+                            <input type="text" placeholder="Username or Email" name="user" id="user" class="form-control login user">
 
-                            <input type="text" placeholder="Password" name="pass" id="" class="form-control pass login">
+                            <input type="password" placeholder="Password" name="pass" id="" class="form-control pass login">
                             
-                            <input type="submit" value="Log-In" />
+                            <input type="submit" class="form-control btn btn-primary" value="Log-In" />
+
+                            <div class="reset">
+                                
+                                <a href="resetPassword.htm"> Forgotten Password </a>
+
+                            </div>
 
                         </form> 
                         
                     </div>
 
-                    <div class="container-signup">
+                    <div class="container-signup m-b-50">
+
+                        <h2>Sign Up</h2>
 
                         <form method="POST" action="signup">
 
-                            <input type="submit" value="Sign - Up" />
+                            <input type="text" placeholder="Username" name="user" id="user" class="form-control signup user">
+
+                            <input type="password" placeholder="Password" name="pass" id="" class="form-control pass sign">
+
+                            <input type="submit" class="form-control btn btn-primary" value="Sign - Up" />
 
                         </form> 
                         

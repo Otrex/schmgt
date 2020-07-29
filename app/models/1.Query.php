@@ -282,30 +282,45 @@ class Query
         return array_keys($this->get()->one());
     }
 
+    
     private function perform($type = false)
     {
        // echo $this->sql."<br>";
         try {
             
-            if (is_bool($type)) {
-                //echo "entrerd";
-                $stmt = $this->conn->prepare($this->sql);
+            $stmt = $this->conn->prepare($this->sql);
 
-            } else {
+            if (is_object($type)){
+
                 $stmt = $type;
+
             }
 
-            $stmt->execute();
+            // if (is_bool($type)) {
+            //     //echo "entrerd";
+            //     $stmt = $this->conn->prepare($this->sql);
+
+            // } else {
+
+            //     if (is_object($type)){
+
+            //         $stmt = $type;
+
+            //     }
+                
+            // }
+
+            $success = $stmt->execute();
 
             
             $this->clearSQL();
 
-            return $type ? $stmt->fetchall(...$this->fetchType): true;
+            return is_object($type) || is_bool($type) ? $success : $stmt->fetchall(...$this->fetchType);
             
         } catch (PDOException $e){
 
-            
             $this->clearSQL();
+            
             die($e);
 
         }
@@ -315,31 +330,52 @@ class Query
     {
         // Type 0 returns Output
         //echo "$this->sql";
-        switch ($type) {
-            case 0:
-
-                return $this->perform();
-
-            case 1:
-
-                return $this->perform(true);
-
-            default:
-                
-                $stmt = $this->conn->prepare($this->sql);
-            
-                foreach ($type as $field => $entry)
-                {
-                    //echo "$entry<br>\n";
-                    $stmt->bindValue(
-                        ":".$field,
-                        $entry, Query::judgeDataType($entry)
-                    );
-                }
-
-                return $this->perform($stmt);
-
+        if ($type == 0)
+        {
+            return $this->perform();
         }
+
+        if ($type == 1)
+        {
+            return $this->perform(1);
+        }
+
+        $stmt = $this->conn->prepare($this->sql);
+            
+        foreach ($type as $field => $entry)
+        {
+            $stmt->bindValue(
+                ":".$field,
+                $entry, Query::judgeDataType($entry)
+            );
+        }
+
+        return $this->perform($stmt);
+
+        // switch ($type) {
+        //     case 0:
+
+        //         return $this->perform();
+
+        //     case 1:
+
+        //         return $this->perform(true);
+
+        //     default:
+                
+        //         $stmt = $this->conn->prepare($this->sql);
+            
+        //         foreach ($type as $field => $entry)
+        //         {
+        //             $stmt->bindValue(
+        //                 ":".$field,
+        //                 $entry, Query::judgeDataType($entry)
+        //             );
+        //         }
+
+        //         return $this->perform($stmt);
+
+        // }
 
     }
 

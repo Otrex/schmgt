@@ -47,20 +47,17 @@
             //$user = $user." and ".$this->token;
             
             $reset = array(
-                "pass" => $this->pass
+                "pass" => $this->pass,
+                
+                "token" => $this->token
             );
-            
-            if ($this->where("name=$this->name")->edit($reset))
-            {
-                return true;
-            }
-            
-            return false;
+           // die(json_encode($reset));
+            return $this->where("userId=$this->id")->edit($reset);  
         }
         
         public function getDetails()
         {
-            return $this->where("userid=$this->gatePass")->get()->one();
+            return $this->where("userId=$this->gatePass")->get()->one();
         }
 
         public function register()
@@ -68,14 +65,21 @@
             $reg = array(
                 "name" => $this->name,
                 "pass" => $this->pass,
-                "state" => "0"
+                "state" => "0",
+                "token" => $this->token,
+                "userId" => "usr-".md5($this->name.$this->pass)
             );
             
-            if ($this->put($reg))
-            {
-                return true;
-            }
-            return false;
+            return $this->put($reg);
+        }
+
+        public function verifyToken()
+        {
+            //
+            $id = $this->where("token=$this->token")->and()->where("name=$this->name")->get("userId")->one();
+
+            //die(json_encode($id));
+            return $id ? $id["userId"] : null;
         }
     }
 

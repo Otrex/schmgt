@@ -16,6 +16,8 @@ $router->post("login", "home&login");
 
 $router->post("signup", "home&signup");
 
+$router->post("resetPassword", "home&reset");
+
 $router->post("dashboard", "dashboard");
 
 $router->post("fee", "fee");

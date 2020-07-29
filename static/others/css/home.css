@@ -1,3 +1,34 @@
 body {
     background-color: aquamarine;
 }
+
+.container-signup-login, .container-reset {
+    padding:50px;
+    background: rgba(0,0,0, .4);
+}
+
+.container-reset > form {
+    margin: 0px 50px;
+}
+
+.inactive {
+    background-color: gray !important;
+    border: 0px !important;
+    color:grey !important;
+}
+
+.inactive:hover {
+    background-color: gray !important;
+    border: 0px !important;
+}
+
+input, .container-reset > form input {
+    margin: 5px;
+}
+
+.m-b-50 {
+    margin-bottom: 50px !important;
+}
+.p-t-80 {
+    padding-top: 80px;
+}

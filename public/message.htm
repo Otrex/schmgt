@@ -1,0 +1,49 @@
+<!-- For login failed -->
+
+<div class="info info-404">
+
+    Failed to login due to incorrect Details
+
+</div>
+
+<div class="info info-505">
+
+    Failed to SignUp due to incorrect Details
+    
+</div>
+
+<div class="info info-500">
+
+    Sign Up Successful, Please continue to Login....
+    
+</div>
+
+<div class="info info-600">
+
+    PassWord Reset Successful, Please continue to Login....
+    
+</div>
+
+<script>
+
+    var info;
+
+    (function ()
+    {
+        msg = ".info-"+msg;
+
+        info = document.querySelector(msg);
+
+        info.classList.add("active");
+
+        setTimeout(()=> {
+
+            info.classList.remove("active");
+
+        }, 4000)
+        
+    })();
+
+</script>
+
+
