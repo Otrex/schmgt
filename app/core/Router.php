@@ -36,15 +36,21 @@ class Router
     {
         if (array_key_exists($uri[0], $this->routes[$method]))
         {
-            $uri[0] = $this->routes[$method][$uri[0]];
+            $uri[0] = explode("&", $this->routes[$method][$uri[0]]);
 
-            $this->directAction($uri, $con);
+            if (count($uri) > 1)
+            {
+                array_push($uri[0], ...array_slice($uri, 1));
+            }
+
+            //print_r($uri);
+            $this->directAction($uri[0], $con);
 
         } else {
 
             throw new Exception(
-                $url[0]."->".$url[1].
-                " Not existing:: Check Your route file..."); 
+                "[ Method : $method, Uri : ".$uri[0]."/".$uri[1]." ] ".
+                "Not existing:: Check Your route file..."); 
 
         }
         

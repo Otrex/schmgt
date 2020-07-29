@@ -24,6 +24,7 @@
         
         public function verify()
         {
+            //die(json_encode($this));
             $usr = $this->where("name=$this->name")->and()->where("pass=$this->pass")->get()->one();
             
             if (isset($usr) && !empty($usr))

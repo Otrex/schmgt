@@ -11,7 +11,7 @@ class Home extends Controller
 
             "home/index", 
             "SchoolMgt Site",
-            [],
+            $data,
             [
                 "../static/others/css/home.css"
             ]
@@ -25,10 +25,16 @@ class Home extends Controller
         
         // Create a validating and sanitizing 
         // function later
+
+        if (!isset($_POST)) 
+        {
+            Tools::redirect_to("error", 500);
+
+        }
         
-        $user->name = "obi";#Tools::stringify($_POST["user"]);
+        $user->name = /*"obi";*/Tools::cleanInput($_POST["user"]);
         
-        $user->pass = "123";#Tools::cleanInput($_POST["pass"]);
+        $user->pass = /*"123";*/Tools::cleanInput($_POST["pass"]);
         
         if ($user->verify())
         {
@@ -41,13 +47,33 @@ class Home extends Controller
             
         } else {
 
-            Tools::redirect_to_home(404);
-            //echo "Failed";
-            // Ajax would handle if not
-            // Tools::redirect("home");
+            echo "failed";
+
+            Tools::redirect_to(".", 404);
+            //header("Location: error");
+           // Tools::redirect_to_home(404);
+
         }
-        //echo "working";
-       // print_r($user);
+
+    }
+
+    public function signup($data=[])
+    {
+        $user = $this->dbmodel("User");
+        
+        // Create a validating and sanitizing 
+        // function later
+
+        if (!isset($_POST)) 
+        {
+            Tools::redirect_to("error", 500);
+
+        }
+        
+        $user->name = /*"obi";*/Tools::cleanInput($_POST["user"]);
+        
+        $user->pass = /*"123";*/Tools::cleanInput($_POST["pass"]);
+        
     }
 }
 

@@ -2,6 +2,7 @@
 
 <section id="main_page_container">
 
+    <a href="#sign-up.htm"> Sign - Up </a>
     <div class="container">
         
         <div class="row">
@@ -14,25 +15,30 @@
 
                 <div class="container-signup-login">
 
-                    <div class="container-signup">
-
-                        <form method="POST" action="home/signup">
-
-                            <input type="submit" value="Sign-Up" />
-
-                        </form> 
-
-                    </div>
-
                     <div class="container-login">
 
-                        <form method="POST" action="../public/home/login">
+                        <form method="POST" action="login">
 
+                        <input type="text" placeholder="Username or Email" name="user" id="user" class="form-control login user">
+
+                            <input type="text" placeholder="Password" name="pass" id="" class="form-control pass login">
+                            
                             <input type="submit" value="Log-In" />
 
                         </form> 
                         
                     </div>
+
+                    <div class="container-signup">
+
+                        <form method="POST" action="signup">
+
+                            <input type="submit" value="Sign - Up" />
+
+                        </form> 
+                        
+                    </div>
+
 
                 </div>
 

@@ -7,7 +7,7 @@ app.controller("mainController", function ($scope, $rootScope, $http, $location)
 
         .then(function (re) {
 
-            console.log(re.data);
+            console.log("hi");
 
         })
     // This is for the header

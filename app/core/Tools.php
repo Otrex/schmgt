@@ -43,15 +43,18 @@
     {
         public static function redirect_to_home ($msg = 0)
         {
+            echo $msg;
             if ($msg != 0)
             {
-                header ("Location: ../?msg=$msg");
+                header ("Location: ../home/index?msg=$msg");
 
                 die();
 
+                return null;
+
             }
 
-            header ("Location: ..");
+           // header ("Location: ..");
 
             die();
             
@@ -59,7 +62,7 @@
 
         public static function redirect_to_dashboard()
         {
-            header("Location: ../dashboard");
+            header("Location: dashboard");
 
             die();
         }
@@ -67,6 +70,13 @@
         public static function redirect($r)
         {
             header ("Location: ../".$r);
+
+            die();
+        }
+
+        public static function redirect_to($r, $msg=null)
+        {
+            header ("Location: $r".($msg ? "/home?msg=".$msg : ""));
 
             die();
         }
@@ -93,6 +103,7 @@
     {
         public static function cleanInput($data)
         {
+            //die($data);
             $data = trim($data);
             
             $data = stripslashes($data);

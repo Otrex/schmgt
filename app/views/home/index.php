@@ -1,5 +1,6 @@
 <?php
 
+//print_r($_GET);
     if (isset($_GET["msg"]))
     {
         switch ($_GET["msg"]) {
@@ -15,7 +16,7 @@
                     echo "<script> alert('You Have Signed Out'); </script>";
                     break;
             default:
-                # code...
+                echo "<script> alert('". $data["msg"]. "'); </script>";
                 break;
         }
 

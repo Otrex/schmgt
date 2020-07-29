@@ -15,7 +15,10 @@
         
 		public static function connect($config)
 		{
-
+			if (array_key_exists("PDO_OBJECT", $config))
+			{
+				return $config["PDO_OBJECT"];
+			}
 			
 			$dbd = $config["DBDRIVER"].":host="
 			       .$config["DBHOST"].":"
@@ -24,7 +27,6 @@
             //die($dbd);
 			try 
 			{
-				
 				return new PDO(
 				    $dbd, $config["DBUSER"],
 				    $config["DBPASS"]

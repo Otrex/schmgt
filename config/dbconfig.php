@@ -1,12 +1,9 @@
-<?php
+<?php 
 
-    $config = array(
-		"DBNAME" => "schmgt",
-		"DBHOST" => "127.0.0.1",
-		"DBDRIVER" => "mysql",
-		"DBUSER" => "root",
-		"DBPASS" => "",
-		"DBPORT" => "3306"
-	);
+# This is created by an AutoLoader
+
+$config = [];
+
+$config['PDO_OBJECT'] = new PDO('mysql:host=127.0.0.1;dbname=schmgt', 'root', '');
 
 ?>
