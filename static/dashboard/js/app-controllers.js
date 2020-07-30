@@ -1,24 +1,81 @@
+
 /***************************************************************************/
 // DASHBOARD //
 /***************************************************************************/
-app.service("server", function($http){
-    this.get = function(url, header = undefined)
-    {
-        $http.get(url)
-    }
-})
 
-app.controller("dashboardController", function($scope, server){
+
+app.controller("dashboardController", function($scope, server, position){
 
     $scope.stats = function () {
+
         return $scope.state
+
     }
 
 })
 
-app.controller("m", function($scope){
+app.controller("dummyController", function($scope, server){
 
-    $scope.user = "iiiiii";
+    //activeNav.set("dummy")
+
+    $scope.stats = function () {
+
+        return $scope.state
+        
+    }
+
+})
+
+app.controller("viewMemberController", function($scope, urlMsg, server){
+
+    //activeNav.set("dummy")
+    $scope.value = urlMsg.get();
+
+    $scope.stats = function () {
+
+        return $scope.state
+        
+    }
+
+})
+
+app.controller("searchController", function($scope, server){
+
+    $scope.result = [];//[{a:1, memberId:"o4444"}, {rr:15, memberId:"dummy"}];
+
+    $scope.stats = function () {
+
+        return $scope.state
+        
+    }
+
+})
+
+app.controller("navController", function($scope, $rootScope, links, tag, activeTag){
+
+    // $scope.active = position.active;
+
+    var ls = tag.getAll(".nav-link"), linkIds = [];
+        //if (ls.prototye){}
+        ls.forEach(element => {
+            
+            links.elements.push(element);
+
+            links.ids.push(element.id);
+
+        });
+
+    activeTag.set(links, "btn-secondary");
+
+        //console.log(linkIds)
+
+    // $rootScope.$on("$routeChangeStart", function () {
+        
+    //     tag.get("#"+ position.active).classList.add("btn-primary");
+
+    // })
+
+
 })
 
 

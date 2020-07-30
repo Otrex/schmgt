@@ -1,0 +1,25 @@
+<div class="search-align-right"><div>
+
+    <div class="container-search">
+    
+        <input type="text" class="" placeholder="Enter the Value you want to search for..." name="query" id="">
+
+        <select name="queryType" class="" id="">
+
+            <option value="memberId"> ID </option>
+
+            <option value="name"> Name </option>
+
+        </select>
+
+    </div>
+
+    <div class="container-search-result" ng-hide="result==[]">
+
+        <ul ng-repeat="data in result">
+
+            <li d-data="data" d-member-less></li>
+
+        </ul>
+    </div>
+</div></div>

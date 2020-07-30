@@ -25,7 +25,7 @@ class Dashboard extends Controller
 
             $this->viewEXT (
                 "dashboard/index", $title, $data,
-                [],
+                ["../static/others/css/dashboard.css"],
 
                 [
                     "id" => "main",
@@ -39,9 +39,9 @@ class Dashboard extends Controller
                    //"https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"
                 ],//add the js src to head
                 [
-                    "../static/dashboard/js/app-setup.js",
+                    "../static/dashboard/js/app-init.js",
                     "../static/dashboard/js/app-controllers.js",
-                    "../static/dashboard/js/app-directives.js"
+                    "../static/dashboard/js/app-directives1.js"
                 ]
             );
             //$this->view("dashboard/index", []);

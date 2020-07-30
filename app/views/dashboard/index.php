@@ -1,19 +1,19 @@
 
-<main id = "dashboard" ng-controller="dashboardController">
+<main id = "dashboard" class="full-height" ng-controller="dashboardController">
 
-    <!-- <section dir-search-bar>
+    <nav d-nav-bar class="container-navbar">
 
-        <!-- Search Bar -->
+        <!-- Navigation  -->
+        
+    </nav>
 
-    <!--</section> -->
+    <section class="page-detail user-info" d-user-info-bar>
 
-    <section id="userinfo" class="userinfo" >
-
-        <h1> User: {{user}} | Status: {{stats()}} </h1>
+        <!-- Sign in information as well as Search bar -->
 
     </section>
 
-    <section ng-view>
+    <section class="page-detail the-view" ng-view>
 
         <!--view port for angularjs-->
 
