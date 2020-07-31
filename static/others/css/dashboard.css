@@ -1,15 +1,20 @@
-/** {border: 1px solid red}*/
+/* {border: 1px solid red}*/
 .container-navbar {
     width: 100px;
     height: 100vh;
     position: fixed;
     top: 0px;
-    left:0px;
+    left:0px;padding: 0px 4px;
     background-color: blue;
 }
 
 .container-navbar a {
-    color:white !important;
+    color:white;
+    
+}
+
+.btn-warning {
+    color:black !important;
 }
 
 .page-detail {
@@ -23,12 +28,14 @@
 
 .container-search-bar {
     position: relative;
+    text-align: right;
 }
 
 .container-search-result {
     position: absolute;
     width: 300px;
-    max-height: 300px;
+    max-height: 80vh;
+    right:0px;
     overflow-y: scroll;
     background-color: aliceblue;
     z-index:300;
@@ -36,22 +43,33 @@
 
 /* .user-info * {
     border:1px solid green;
-} */
-
+} 
+.search-align-right, .container-search-bar, .search-align-right * {border:1px solid pink;}*/
 .search-align-right {
-    display: inline;
+    display: inline-block;
+    position: relative;
+    right: 0px;
     text-align: right;
 }
 
 .footer-post {
     position: fixed;
-    bottom:0px;
+    bottom: 0px;
     width:100%;
+    padding:0px 105px;/* Same with nav width */
+}
+
+.footer-post > div {
+    background-color: azure;
 }
 
 .card {
-    box-shadow: 0px 0px 5px grey;
+    box-shadow: 0px 0px 0px grey;
+    border: 0px !important;
+    border-radius: 0px !important;
     padding:15px;
+    margin-top: 7px;
+    background-color: rgba(226, 226, 226, 0.658);
 }
 
 .breadcrumb {
@@ -66,3 +84,50 @@
     display: inline;
     text-align: right;
 } */
+.v-middle {
+    display: table;
+    height: 100%;
+    }
+
+.v-middle > * {
+    display: table-cell;
+    vertical-align: middle;
+}
+.icon {
+    width: 3rem;
+    display: inline-block;
+    background-color: lightskyblue;
+    height: 3rem;
+    vertical-align: middle;
+}
+
+.total-label {
+    font-size: 2rem;
+    font-weight: bolder;
+    color:blue;
+    width:40px;
+    height: 40px;
+}
+
+.container-logo {
+    width: 80%;
+    margin: 20px auto;
+    height: 80px;
+    background-color: darkblue;
+}
+
+.status {
+    display: inline-block;
+    width:20px;
+    height:20px;
+    margin: 0px 0px 0px 10px;
+    border-radius: 50%;
+}
+
+.status-online {
+    background-color: green;
+}
+
+.status-offline {
+    background-color: grey;
+}

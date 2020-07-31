@@ -48,7 +48,7 @@ app.config(function($routeProvider, $locationProvider) {
     })
 
     .otherwise({
-        templateUrl: "../static/dashboard/templates/page-not-found.htm"
+        templateUrl: "../static/dashboard/templates/page-404.htm"
     })
 
 
@@ -77,7 +77,24 @@ app.config(function($routeProvider, $locationProvider) {
     // })
     
 });
+app.filter("ucfirst", function(){
 
+    return function (st) {
+
+        var txt = "";
+
+        if (st === undefined) {return ""}
+
+        st.split(" ").forEach(el => {
+            
+            txt += el.replace(el[0], el[0].toUpperCase())+" ";
+
+        });
+
+        return txt
+        
+    }
+})
 /********************SERVICES ********************************/
 
 app.service("server", function($http){

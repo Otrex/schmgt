@@ -6,11 +6,31 @@
 
 app.controller("dashboardController", function($scope, server, position){
 
+    $scope.students = {};
+
+    $scope.teachers = {};
+
+    $scope.nonteachers ={};
+
+    $scope.total = function () {
+
+        $scope.students.total = 50;
+
+        $scope.teachers.total = 20;
+
+        $scope.nonteachers.total = 10;
+
+    }
+
+    $scope.total();
+
     $scope.stats = function () {
 
         return $scope.state
 
     }
+
+    
 
 })
 
@@ -56,7 +76,7 @@ app.controller("navController", function($scope, $rootScope, links, tag, activeT
     // $scope.active = position.active;
 
     var ls = tag.getAll(".nav-link"), linkIds = [];
-        //if (ls.prototye){}
+        
         ls.forEach(element => {
             
             links.elements.push(element);
@@ -65,7 +85,7 @@ app.controller("navController", function($scope, $rootScope, links, tag, activeT
 
         });
 
-    activeTag.set(links, "btn-secondary");
+    activeTag.set(links, "btn-primary");
 
         //console.log(linkIds)
 

@@ -5,7 +5,9 @@ app.directive("dTotal",  function () {
 
         scope : {
 
-              infoType : '=dData'
+              infoData : '=dData',
+
+              type : "=dMemberType",
         
         },
         
@@ -14,6 +16,19 @@ app.directive("dTotal",  function () {
             return "../static/dashboard/templates/snippets/" + attr.panel + ".htm";
         
         }
+    }
+})
+
+
+app.directive("dMiddle", function () {
+    
+    return {
+
+        restrict: "E",
+
+        transclude: true,
+
+        template: "<div class='v-middle'><div><ng-transclude></ng-transclude></div></div>"
     }
 })
 

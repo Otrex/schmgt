@@ -1,25 +1,37 @@
-<div class="breadcrumb" d-breadcrumb> Dashboard / </div>
+<div class="breadcrumb" d-breadcrumb> Dashboard / Home </div>
 
 <section info-header>
 
     <div class="row">
 
-        <div class="col-md-4">
+        <div class="col-md-4" >
 
-            <div class="card"><div panel="info-total" d-data="students" d-total></div></div>
+            <div class="card">
+                
+                <div panel="info-total" d-data="students.total" d-member-type="d='students'" d-total></div>
+            
+            </div>
             
 
         </div>
 
         <div class="col-md-4">
 
-            <div class="card"><div panel="info-total" d-data="teachers" d-total></div></div>
+            <div class="card">
+                
+                <div panel="info-total" d-data="teachers.total" d-member-type="d='teachers'" d-total></div>
+            
+            </div>
             
         </div>
 
         <div class="col-md-4">
 
-            <div class="card"><div panel="info-total" d-data="nonteachers" d-total></div></div>
+            <div class="card">
+                
+                <div panel="info-total" d-data="nonteachers.total" d-member-type="d='non teachers'" d-total></div>
+            
+            </div>
 
         </div>
 
@@ -28,5 +40,5 @@
 </section>
 
 
-<a href="#logout">Logout</a>
+
 
