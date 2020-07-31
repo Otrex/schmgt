@@ -19,6 +19,14 @@ app.config(function($routeProvider, $locationProvider) {
 
     })
 
+    .when("/students", {
+
+        templateUrl: "../static/dashboard/templates/students.htm",
+
+        controller:"studentsController"
+
+    })
+
     .when("/dummy", {
 
         templateUrl: "../static/dashboard/templates/dashboard.htm",
@@ -47,36 +55,21 @@ app.config(function($routeProvider, $locationProvider) {
             
     })
 
+    .when("/register/:data", {
+
+        templateUrl: "../static/dashboard/templates/register.htm",
+
+        controller:"registerMemberController"
+            
+    })
+
     .otherwise({
         templateUrl: "../static/dashboard/templates/page-404.htm"
     })
 
-
-    // .when("/fee", {
-
-    //     templateUrl: loc + "templates/fee.htm",
-
-    //     controller:"feeController"
-
-    // })
-
-    // .when("/update-record/:data/:action", {
-
-    //     templateUrl: loc + "templates/update-record.htm",
-
-    //     controller:"updateRecordController"
-        
-    // })
-
-    // .when("/edit-reportbook/:data/:action", {
-
-    //     templateUrl: loc + "templates/edit-reportbook.htm",
-
-    //     controller:"editReportBookController"
-        
-    // })
-    
 });
+
+
 app.filter("ucfirst", function(){
 
     return function (st) {
@@ -99,9 +92,19 @@ app.filter("ucfirst", function(){
 
 app.service("server", function($http){
 
-    this.get = function(url, header = undefined)
+    this.get = function(url, successcallback, failureCallback, config = undefined)
     {
-        $http.get(url)
+        $http.get(url, config)
+        
+        .then(function (r) {
+
+            successcallback(r.data);
+
+        }, function(m){
+
+            failureCallback(m)
+
+        });
     }
 
 })

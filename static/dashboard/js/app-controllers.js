@@ -4,7 +4,7 @@
 /***************************************************************************/
 
 
-app.controller("dashboardController", function($scope, server, position){
+app.controller("dashboardController", function($scope, server){
 
     $scope.students = {};
 
@@ -14,11 +14,24 @@ app.controller("dashboardController", function($scope, server, position){
 
     $scope.total = function () {
 
-        $scope.students.total = 50;
+        function onSuccess (data)
+        {
+            $scope.teachers.total = data.t;
 
-        $scope.teachers.total = 20;
+            $scope.nonteachers.total = data.nt;
 
-        $scope.nonteachers.total = 10;
+            delete data.t, data.nt;
+
+            sum = Object.values(data).reduce(function(a, b){
+                return a + b;
+            }, 0);
+
+            $scope.students.total = sum;
+        }
+
+        function onFailure(p) {}
+
+        server.get('dashboard/getTotalMember', onSuccess, onFailure);
 
     }
 
@@ -46,7 +59,45 @@ app.controller("dummyController", function($scope, server){
 
 })
 
+app.controller("studentsController", function($scope, server){
+
+    //activeNav.set("dummy")
+
+    function attachpaid(data){}
+
+    $scope.students = {
+        c1:[{name:"Obi",class:"l2", type:"teacher"},
+            {name:"Abi",class:"l2", paid:"true"},
+            {name:"Obi",class:"l2"}],
+        c2:[{name:"Trebi",class:"l2", type:"teacher"},
+            {name:"cobi",class:"l2", paid:"true"},
+            {name:"Obi",class:"l2"}], 
+        c3:[{name:"medase",class:"l2", type:"teacher"},
+            {name:"Obi",class:"l2", paid:"true"},
+            {name:"Obi",class:"l2"}]}
+
+    $scope.stats = function () {
+
+        return $scope.state
+        
+    }
+
+})
+
 app.controller("viewMemberController", function($scope, urlMsg, server){
+
+    //activeNav.set("dummy")
+    $scope.value = urlMsg.get();
+
+    $scope.stats = function () {
+
+        return $scope.state
+        
+    }
+
+})
+
+app.controller("registerMemberController", function($scope, urlMsg, server){
 
     //activeNav.set("dummy")
     $scope.value = urlMsg.get();

@@ -8,6 +8,12 @@
     background-color: blue;
 }
 
+.the-view {
+    /* background-color: pink; */
+    margin-top:5px;
+    padding:0px !important;
+}
+
 .container-navbar a {
     color:white;
     
@@ -58,6 +64,14 @@
     width:100%;
     padding:0px 105px;/* Same with nav width */
 }
+.transparent {
+    background-color: rgba(226, 226, 226, 0) !important;
+}
+
+.fit {
+    width:100%;
+    overflow: hidden;
+}
 
 .footer-post > div {
     background-color: azure;
@@ -72,9 +86,15 @@
     background-color: rgba(226, 226, 226, 0.658);
 }
 
+a.nav-link.btn-primary {
+    color:white;
+}
+
 .breadcrumb {
     padding:7px;
+    margin-top: 7px;
     font-weight: bold;
+    margin-bottom:0px !important;
 }
 
 .full-height {
@@ -131,3 +151,50 @@
 .status-offline {
     background-color: grey;
 }
+
+.member-less {
+
+    box-shadow: 0px 0px 5px grey;
+    padding: 10px;
+    border-radius: 5px;
+
+}
+
+.member-less-marker {
+
+    width: 30px;
+    height: 30px;
+    margin-top: 8px;
+    display: inline-block;
+    background-color: grey;
+    border-radius: 50%;
+
+}
+
+.container-member-less-img {
+    width:45px;
+    height:45px;
+    background-color: aquamarine;
+}
+
+.member-class {
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.member-less-marker.member-paid-true {
+    background-color: green;
+}
+
+.member-less-marker.member-paid-false {
+    background-color: red;
+}
+
+.member-less-marker.member-type-teacher {
+    background-color: yellow;
+}
+.member-less-marker.member-type-student {
+    background-color: lightblue;
+}
+
+

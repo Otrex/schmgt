@@ -2,13 +2,19 @@
 
 class StudentFactory extends Query
 {
-    public function getClassStudents($cls)
+    public function __construct($conn) 
     {
+        parent::__construct($conn);
+
         $std = new Student($this->conn);
         
-        $classMap = array_flip($std->getClassMap());
+        $this->classmap = array_flip($std->getClassMap());
 
-        $this->setTable($classMap[$cls]);
+    }
+
+    public function getClassStudents($cls)
+    {
+        $this->setTable($this->classmap[$cls]);
 
         $this->setFetchType(PDO::FETCH_CLASS, "tmpStudent");
 
@@ -36,11 +42,9 @@ class StudentFactory extends Query
     {
         $result = [];
 
-        $std = new Student($this->conn);
-
-        foreach ($std->getClassMap() as $key => $value) {
+        foreach ($this->classmap as $key => $value) {
             
-            $this->setTable($key);
+            $this->setTable($value);
 
             $this->setFetchType(PDO::FETCH_CLASS, "tmpStudent");
 

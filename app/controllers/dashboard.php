@@ -49,6 +49,12 @@ class Dashboard extends Controller
         
     }
     
+    public function getTotalMember()
+    {
+        $school = $this->dbmodel("SchoolFactory");
+
+        echo json_encode($school->getTotals_array());
+    }
     // Dummy method
     
     public function search()

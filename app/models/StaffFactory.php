@@ -2,6 +2,9 @@
 
 class StaffFactory extends Query
 {
+    
+    public $staffTypes = ["t", "nt"];
+
     public function getAllStaff()
     {
         $this->setTable("staff");
@@ -20,6 +23,11 @@ class StaffFactory extends Query
 
         //echo json_encode($this->get()->all());
         return $this->where("type=$stype")->get()->all();
+    }
+
+    public function getTotalStaff($type)
+    {
+        return count($this->getStaffByType($type));
     }
 
     public function getStaff($id , $cls="staff")

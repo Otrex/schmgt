@@ -1,8 +1,36 @@
-<div ng-click="view(member.memberId)">
-    
-    {{member}}
+<div class="member-less" ng-click="view(member.memberId)">
 
-    <p> HAppy Birth </p>
+    <div class="row">
+
+        <div class="col-md-3">
+
+            <div class="container-member-less-img">
+
+                <img src="{{member.picuture_src}}" alt="{{name}}">
+
+            </div>
+
+        </div>
+
+        <div class="col-md-6">
+
+            <h3>{{member.name}} | <span class="member-class">{{member.class}}</span></h3>
+
+        </div>
+
+        <div ng-if="member.type === undefined" class="col-md-3">
+
+            <span class="member-less-marker member-paid-{{member.paid}}"></span>
+
+        </div>
+
+        <div ng-if="member.type != undefined" class="col-md-3">
+            
+            <span class="member-less-marker member-type-{{member.type}}"></span>
+        
+        </div>
+
+    </div>
 
 </div>
 
