@@ -89,6 +89,15 @@ app.directive("dUserInfoBar", function () {
 
 })
 
+app.directive("dCalender", function () {
+
+    return {
+
+        templateUrl: "../static/dashboard/templates/snippets/calender.htm"
+
+    }
+
+})
 /*************************** DR-Searchinfo VIEW *************************/
 app.directive("dSearchBar", function () {
 

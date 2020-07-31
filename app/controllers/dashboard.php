@@ -25,7 +25,7 @@ class Dashboard extends Controller
 
             $this->viewEXT (
                 "dashboard/index", $title, $data,
-                ["../static/others/css/dashboard.css"],
+                ["../static/others/css/dashboard.css", "../static/others/css/calender-event.css"],
 
                 [
                     "id" => "main",
