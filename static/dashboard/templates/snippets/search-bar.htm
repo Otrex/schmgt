@@ -1,13 +1,13 @@
-<div class="search-align-right"><div>
+<div class="search-align-right" ><div>
 
     <div class="container-search">
 
         <div class="input-group ml-auto">
     
-            <input type="text" class="form-control" placeholder="Enter the Value you want to search for..." name="query" id="">
+            <input type="text" class="form-control" ng-change="search()" ng-model = "query.value" placeholder="Enter the Value you want to search for..." name="query" id="">
 
 
-            <select name="queryType" class="input-group-append form-control col-md-3 col-sm-3" id="">
+            <select name="queryType" ng-model="query.by" ng-change="search()" class="input-group-append form-control col-md-3 col-sm-3">
 
                 <option value="memberId"> ID </option>
 

@@ -56,6 +56,8 @@ trait Member
 
             }
 
+            unset($this->conn); 
+
             return true;
         }
 

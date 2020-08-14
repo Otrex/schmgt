@@ -19,6 +19,35 @@ app.directive("dTotal",  function () {
     }
 })
 
+app.directive("dSettingItem",  function () {
+
+    return {
+
+        scope : {
+
+              infoData : '=dData',
+        },
+
+        template : function($scope)
+        {
+            $scope.form  = {};
+            
+            return "<div>" 
+
+            + "<label>{{infoData[0]}}: {{infoData[1]}} </label>"
+            + "<button class='btn btn-primary ' style='margin: 0px 10px; width: 70px;' ng-click='t = t ? 0 : 1' > Edit </button>"
+            + "<input class='form-control' ng-model='form[infoData[0]]' ng-show='t' />"
+            + "</div>"
+        }
+        
+        // templateUrl: function (elem, attr) {
+        
+        //     return "../static/dashboard/templates/snippets/" + attr.panel + ".htm";
+        
+        // }
+    }
+})
+
 
 app.directive("dMiddle", function () {
     
@@ -46,11 +75,11 @@ app.directive("dMemberLess",  function () {
         
         templateUrl: "../static/dashboard/templates/snippets/member-less.htm",
         
-        controller: function($scope, $location){
+        controller: function($scope, $location, urlMsg){
 
-            $scope.view = function (memberId) {
+            $scope.view = function (memberId, _class = "staff") {
                 
-                $location.path('/view-record/' + memberId)
+                $location.path('/view-record/' + urlMsg.prepare(memberId) + '/' + urlMsg.prepare(_class))
                 
             }
         }//function (elem, attr) {
@@ -93,9 +122,37 @@ app.directive("dCalender", function () {
 
     return {
 
-        templateUrl: "../static/dashboard/templates/snippets/calender.htm"
+        templateUrl: "../static/dashboard/templates/snippets/calender.htm",
+
+        controller : function(tools, tag, $scope)
+        {
+            tools.calender($scope.y, $scope.m, tag.get("#cal-view")).create();
+
+            $scope.eventOpen = function (y, m, d) {
+                //alert(""+y+m+d);
+                console.log([y,m,d])
+            }
+            
+            $scope.$watch('m',function (nv, ov) {
+                console.log([nv,ov, $scope.m]);
+                if (nv){
+                    tools.calender($scope.y, $scope.m, tag.get("#cal-view")).create();
+                }
+            })
+
+            $scope.$watch('y',function (nv, ov) {
+                console.log([nv,ov, $scope.y]);
+                if (nv){
+                    tools.calender($scope.y, $scope.m, tag.get("#cal-view")).create();
+                }
+            })
+
+
+        }
 
     }
+
+    
 
 })
 /*************************** DR-Searchinfo VIEW *************************/

@@ -3,7 +3,7 @@
 class StaffFactory extends Query
 {
     
-    public $staffTypes = ["t", "nt"];
+    public $staffTypes = [0, 1];
 
     public function getAllStaff()
     {
@@ -13,6 +13,13 @@ class StaffFactory extends Query
 
         //echo json_encode($this->get()->all());
         return $this->get()->all();
+    }
+
+    public function getLastId($x="")
+    {
+        $this->setTable("staff");
+
+        return $this->getLastColumn("memberId");
     }
 
     public function getStaffByType($stype)
@@ -37,7 +44,7 @@ class StaffFactory extends Query
         return $std->getDetails() ? $std : null;
     }
 
-    public function createTmpStaff($id, $cls)
+    public function createTmpStaff($id, $cls="staff")
     {
         $std =  new Staff($this->conn);
 

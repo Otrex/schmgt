@@ -1,1 +1,66 @@
-<h1> Register </h1>
+<h1> Register {{type|ucfirst}}</h1>
+
+{{value}}
+<section class="container">
+
+    <form action="" class="forms" ng-if="type=='student'">
+
+        <input type="text" ng-model="form.name" class="form-control" placeholder="Name" required autofocus>
+
+        <input type="text" ng-model="form.class" class="form-control" placeholder="Class">
+
+        <div class="input-group ml-auto">
+    
+            <input type="text" class="form-control col-md-4 col-sm-4" ng-model="form.dob.day" placeholder="Day"  required>
+
+            <select ng-model="form.dob.month" class="input-group-append form-control col-md-4 col-sm-4">
+
+                <option > Month </option>
+
+                <option value="01"> JANUARY </option>
+
+                <option value="02"> FEBUARY </option>
+
+            </select>
+
+            <input type="text" class="form-control col-md-4 col-sm-4" ng-model="form.dob.year"  placeholder="Year" required>
+
+        </div>
+
+        <input type="button" ng-click="register()" class="btn btn-block btn-primary form-control" value="Register">
+
+    </form>
+</section>
+
+<section class="container">
+
+    <form action="" class="forms" ng-if="type=='staff'">
+
+        <input type="text" ng-model="form.name" class="form-control" placeholder="Name" required autofocus>
+
+        <input type="text" ng-model="form.office" class="form-control" placeholder="Office">
+
+        <input type="text" ng-model="form.salary" class="form-control" placeholder="Salary">
+
+        <div class="input-group ml-auto">
+    
+            <input type="text" class="form-control col-md-4 col-sm-4" ng-model="form.dob.day" placeholder="Day"  required>
+
+            <select ng-model="form.dob.month" class="input-group-append form-control col-md-4 col-sm-4" id="">
+
+                <option > Month </option>
+
+                <option value="01"> JANUARY </option>
+
+                <option value="02"> FEBUARY </option>
+
+            </select>
+
+            <input type="text" class="form-control col-md-4 col-sm-4" ng-model="form.dob.year"  placeholder="Year" required>
+
+        </div>
+
+        <input type="button" ng-click="register()" class="btn btn-block btn-primary form-control" value="Register">
+
+    </form>
+</section>

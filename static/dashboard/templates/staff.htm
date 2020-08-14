@@ -1,4 +1,4 @@
-<div class="breadcrumb" d-breadcrumb> Dashboard / Students </div>
+<div class="breadcrumb" d-breadcrumb> Dashboard / Staff </div>
 
 <section style="margin-top: 7px;">
 
@@ -13,7 +13,7 @@
               <a class="nav-link" href="#students"> Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#register/student"> Register New Student </a>
+              <a class="nav-link" href="#register/staff"> Register New Staff </a>
             </li>
             <!-- <li class="nav-item">
               <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
@@ -30,55 +30,41 @@
         </div>
       </nav>
 
-    <a class="nav-link btn-primary btn-block" type="button" data-toggle="collapse" data-target="#c1" 
-    aria-expanded="false" aria-controls="c1"> Class 1 </a>
+   <div class="container-fluid">
 
-    <div class="collapse multi-collapse" id="c1">
+    <div class="row">
 
-        <div class="row">
+      <div class="col-md-6">
 
-            <div class="card card-body transparent col-md-3" ng-repeat="c1 in students.c1">
-
-                <div d-data="c1" d-member-less> </div>
-            
-            </div>
-
-        </div>
-
-    </div>
-  
-    <a class="nav-link btn-primary  btn-block" type="button" data-toggle="collapse" data-target="#c2" 
-    aria-expanded="false" aria-controls="c2"> Class 2 </a>
-
-    <div class="collapse multi-collapse" id="c2">
+        <h3 style="text-align: center;"> Teachers </h3>
 
         <div class="row">
 
-            <div class="card card-body transparent col-md-3" ng-repeat="c2 in students.c2">
+        <div class="card card-body transparent col-md-6" ng-repeat="teacher in staff.teachers">
 
-                <div d-data="c2" d-member-less> </div>
-            
-            </div>
-
+          <div d-data="teacher" d-member-less> </div>
+      
+        </div>
+      
         </div>
 
-    </div>
+      </div>
 
-    <a class="nav-link btn-primary btn-block" type="button" data-toggle="collapse" data-target="#c3" 
-    aria-expanded="false" aria-controls="c3"> Class 3 </a>
+      <div class="col-md-6">
 
-    <div class="collapse multi-collapse" id="c3">
+        <h3 style="text-align: center;"> Non - Teachers </h3>
 
         <div class="row">
+        
+        <div class="card card-body transparent col-md-6" ng-repeat="nonteacher in staff.nonteachers">
 
-            <div class="card card-body transparent col-md-3" ng-repeat="c3 in students.c3">
-
-                <div d-data="c3" d-member-less> </div>
-            
-            </div>
-
+          <div d-data="nonteacher" d-member-less> </div>
+      
+        </div>
+      
         </div>
 
+      </div>
     </div>
-
+   </div>
 </section>

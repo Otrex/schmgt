@@ -1,4 +1,4 @@
-<div class="member-less" ng-click="view(member.memberId)">
+<div class="member-less" ng-click="view(member.memberId, member.class)">
 
     <div class="row">
 
@@ -13,8 +13,11 @@
         </div>
 
         <div class="col-md-6">
-
-            <h3>{{member.name}} | <span class="member-class">{{member.class}}</span></h3>
+            <div d-middle>
+            <h5 >{{member.name}} 
+                <span ng-if="member.type != undefined">| <span class="member-class">{{member.class}}</span></span>
+            </h5>
+            </div>
 
         </div>
 

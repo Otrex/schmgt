@@ -38,6 +38,15 @@ class StudentFactory extends Query
         return $std;
     }
 
+    public function getLastId($class)
+    {
+        $table = $this->classmap[$class];
+
+        $this->setTable($table);
+
+        return $this->getLastColumn("memberId");
+    }
+
     public function search($by, $data)
     {
         $result = [];
@@ -46,12 +55,17 @@ class StudentFactory extends Query
             
             $this->setTable($value);
 
-            $this->setFetchType(PDO::FETCH_CLASS, "tmpStudent");
+            $this->setFetchType(PDO::FETCH_CLASS, "tmpStudent", [$key]);
 
             $ans = $this->where("$by LIKE $data%", " LIKE ")
             ->get("name","date_of_birth","picture","memberId")->all();
 
             array_push($result, ...$ans);
+
+            // foreach ($result as $value) {
+                
+            //     $value->class = $key;
+            // }
         }
 
         return $result;
@@ -84,7 +98,7 @@ class StudentFactory extends Query
 
         }
 
-        $std->register();
+        return $std->register();
     }
 }
 

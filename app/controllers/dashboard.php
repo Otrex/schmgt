@@ -57,14 +57,15 @@ class Dashboard extends Controller
     }
     // Dummy method
     
-    public function search()
+    public function searchMember()
     {
         Tools::isloggedIn();
 
-        $dummy = [
-            "by" => "memberId",
-            "value" => "cc"
-        ];
+        $dummy = $_POST;
+        // $dummy = [
+        //     "by" => "memberId",
+        //     "value" => "cc"
+        // ];
 
         $school = $this->dbmodel("SchoolFactory");
 
@@ -75,11 +76,24 @@ class Dashboard extends Controller
     {
         Tools::isloggedIn();
 
-        $dummy = ["class" => "LVL 1"];
+        //$dummy = ["class" => "LVL 1"];
+        $dummy = $_POST;
         
         $school = $this->dbmodel("SchoolFactory");
 
         echo json_encode($school->getClass($dummy["class"]));
+    }
+
+    public function getSClass()
+    {
+        Tools::isloggedIn();
+
+        //$dummy = ["class" => "LVL 1"];
+        $dummy = $_POST;
+        
+        $school = $this->dbmodel("SchoolFactory");
+
+        echo json_encode($school->getClass($dummy["class"])->students);
     }
 
 }

@@ -16,11 +16,15 @@ app.controller("dashboardController", function($scope, server){
 
         function onSuccess (data)
         {
-            $scope.teachers.total = data.t;
+            console.log(data)
+            $scope.teachers.total = data[0];
 
-            $scope.nonteachers.total = data.nt;
+            $scope.nonteachers.total = data[1];
 
-            delete data.t, data.nt;
+            delete data[0];
+
+            delete data[1];
+            console.log(data)
 
             sum = Object.values(data).reduce(function(a, b){
                 return a + b;
@@ -59,22 +63,47 @@ app.controller("dummyController", function($scope, server){
 
 })
 
-app.controller("studentsController", function($scope, server){
 
-    //activeNav.set("dummy")
+app.controller("staffController", function($scope, server){
 
-    function attachpaid(data){}
+    function getKeyByValue(object, value) {
 
-    $scope.students = {
-        c1:[{name:"Obi",class:"l2", type:"teacher"},
-            {name:"Abi",class:"l2", paid:"true"},
-            {name:"Obi",class:"l2"}],
-        c2:[{name:"Trebi",class:"l2", type:"teacher"},
-            {name:"cobi",class:"l2", paid:"true"},
-            {name:"Obi",class:"l2"}], 
-        c3:[{name:"medase",class:"l2", type:"teacher"},
-            {name:"Obi",class:"l2", paid:"true"},
-            {name:"Obi",class:"l2"}]}
+        return Object.keys(object).find(key => object[key] === value);
+
+    }
+
+    let d = {teachers:0, nonteachers:1};
+
+    server.get("dashboard/getAllStaff", function (p) {
+            
+        p.forEach((data)=>{
+
+            $scope.staff[d[data.type]] = data;
+
+            delete data.type;
+            
+        })
+
+    }, function (s) {
+        
+    })
+
+    $scope.staff = {}
+
+    
+
+    Object.values(d).forEach((e) => {
+
+        server.post("dashboard/getStaffByType", {type: e}, function (p) {
+            
+            $scope.staff[getKeyByValue(d, e)] = p;
+
+        }, function (s) {
+            
+        })
+    })
+
+    
 
     $scope.stats = function () {
 
@@ -84,15 +113,118 @@ app.controller("studentsController", function($scope, server){
 
 })
 
-app.controller("viewMemberController", function($scope, urlMsg, server){
 
+app.controller("studentsController", function($scope, server){
+
+    function attachpaid(data){return data}
+
+    function getKeyByValue(object, value) {
+
+        return Object.keys(object).find(key => object[key] === value);
+
+      }
+
+    $scope.students = {}
     //activeNav.set("dummy")
-    $scope.value = urlMsg.get();
+    let classes = {c1:"LVL 1", c2: "LVL 2", c3: "LVL 3"};
+
+    Object.values(classes).forEach((el) => {
+
+        server.post("dashboard/getSClass", {class: el}, function (s) {
+
+            $scope.students[getKeyByValue(classes, el)] = s;
+
+            $scope.students[getKeyByValue(classes, el)].forEach((std)=>{std.class = el});
+
+            console.log($scope.students)
+
+        }, function (e){});
+
+    })
 
     $scope.stats = function () {
 
         return $scope.state
         
+    }
+
+})
+
+app.controller("settingsController", function($scope, urlMsg, server, $location){
+
+    $scope.data = {k: "Hi", v:"Her "}
+
+    $scope.form = {};
+
+
+})
+app.controller("viewMemberController", function($scope, urlMsg, server, $location){
+
+    $scope.currentDate = new Date();
+    //activeNav.set("dummy")
+    data = urlMsg.get("class");
+
+    _id = data[0];
+    _class = data[1];
+
+    if ($scope.value != ""|| $scope.value != undefined)
+    {
+        if (_class === "staff")
+        {
+            server.post(
+                "dashboard/getStaff", {memberId: _id},
+                function(r){
+                    $scope.value = r;
+
+                    console.log(r);
+                }, function(m){})
+
+        } else {
+
+            server.post(
+                "dashboard/getStudent", {memberId: _id, class: _class},
+                function(r){
+                    $scope.value = r;
+                }, function(m){})
+        }
+    }
+
+    $scope.stats = function () {
+
+        return $scope.state
+        
+    }
+
+    $scope.remove = function () {
+
+        if (_class != "staff"){
+
+            if (confirm("Do You really want to remove " + $scope.value.name + "?")){
+                server.post(
+                    "dashboard/withdrawStudent", {memberId: _id, class: _class},
+                    function(r){
+
+                        if (r) alert(_id + " Has been Removed Successfully")
+
+                        $location.url("students")
+
+                    }, function(m){})
+            }
+        } else {
+
+            if (confirm("Do You really want to remove " + $scope.value.name + "?")){
+                server.post(
+                    "dashboard/withdrawStaff", {memberId: _id},
+                    function(r){
+                        
+                        if (r) alert(_id + " Has been Removed Successfully")
+
+                        $location.url("staff")
+
+                    }, function(m){})
+            }
+        }
+        //server.        
     }
 
 })
@@ -100,7 +232,44 @@ app.controller("viewMemberController", function($scope, urlMsg, server){
 app.controller("registerMemberController", function($scope, urlMsg, server){
 
     //activeNav.set("dummy")
-    $scope.value = urlMsg.get();
+    $scope.type = urlMsg.get();
+
+    $scope.form = {};
+
+    $scope.register = function () {
+
+        $scope.form.date_of_birth = $scope.form.dob.day + "/" + $scope.form.dob.month +"/"+$scope.form.dob.year;
+
+        delete $scope.form.dob;
+        
+        switch ($scope.type) {
+
+            case "staff":
+                
+                server.post("dashboard/registerStaff", $scope.form, function (r) {
+
+                    if (r) alert($scope.form.name + " is registered Successfully into "+ $scope.form.class +"!!"); 
+                    
+                }, function (e) {
+                    
+                    console.log(e);
+                })
+                break;
+        
+            default:
+                server.post("dashboard/registerStudent", $scope.form, function (r) {
+
+                    if (r) alert($scope.form.name + " is registered Successfully!!");
+                    
+                }, function (e) {
+                    
+                    console.log(e);
+                })
+                break;
+        }
+
+        
+    }
 
     $scope.stats = function () {
 
@@ -112,7 +281,26 @@ app.controller("registerMemberController", function($scope, urlMsg, server){
 
 app.controller("searchController", function($scope, server){
 
+    $scope.query = {by: "name", value: ""}
+
     $scope.result = [];//[{a:1, memberId:"o4444"}, {rr:15, memberId:"dummy"}];
+
+    function errHandler(params) {
+        
+    }
+
+    function getOutput(r) {
+        
+        $scope.result = r;
+
+        console.log(r);
+
+    }
+
+    $scope.clear = function () {
+        
+        $scope.result = []
+    }
 
     $scope.stats = function () {
 
@@ -120,9 +308,23 @@ app.controller("searchController", function($scope, server){
         
     }
 
+    $scope.search = function () {
+        
+        if ($scope.query.value != "")
+        {
+           // console.log($scope.query)
+            server.post("dashboard/searchMember", $scope.query, getOutput, errHandler);
+
+        } else {
+
+            $scope.clear();
+
+        }
+    }
+
 })
 
-app.controller("navController", function($scope, $rootScope, links, tag, activeTag){
+app.controller("navController", function($scope, links, tag, activeTag){
 
     // $scope.active = position.active;
 
@@ -137,15 +339,6 @@ app.controller("navController", function($scope, $rootScope, links, tag, activeT
         });
 
     activeTag.set(links, "btn-primary");
-
-        //console.log(linkIds)
-
-    // $rootScope.$on("$routeChangeStart", function () {
-        
-    //     tag.get("#"+ position.active).classList.add("btn-primary");
-
-    // })
-
 
 })
 

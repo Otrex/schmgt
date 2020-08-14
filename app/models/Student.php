@@ -1,6 +1,11 @@
 <?php
 
-class tmpStudent{}
+class tmpStudent{
+    public function __construct($cls=null)
+    {
+        $this->class = $cls;
+    }
+}
 
 class Student extends Person
 {
@@ -43,6 +48,8 @@ class Student extends Person
 
         $this->reportSheet->retrieveData();
 
+        $this->paymentPort = $this->paymentPort->history();
+
         if($bool){
             $this->setupClass();
         };
@@ -61,9 +68,11 @@ class Student extends Person
 
     public function withdraw()
     {
-        $this->withdrawMember();
+        $x = $this->withdrawMember();
 
         $this->reportSheet->destroy();
+
+        return $x;
     }
 
     public function tmpSetup($id, $class)

@@ -1,75 +1,59 @@
+<div style="margin-top:7px;">
 
+  <div class="breadcrumb" >
+    <div class="input-group" >
+    
+    <select ng-model="m" placeholder="Select Month" class="input-group-append form-control col-md-6 col-sm-6">
+      <option value="1">January</option>
+      <option value="2">Febuary</option>
+      <option value="3">March</option>
+      <option value="4">April</option>
+      <option value="5">May</option>
+      <option value="6">June</option>
+      <option value="7">July</option>
+      <option value="8">August</option>
+      <option value="9">September</option>
+      <option value="10">October</option>
+      <option value="11">November</option>
+      <option value="12">December</option>
+    </select>
 
-<div class="container">
-	<div class="row">
-		<div class="span12">
-    	    <table class="table-condensed table-bordered table-striped">
-                <thead>
-                    <tr>
-                      <th colspan="7" >
-                        <a class="btn"><i class="icon-chevron-left"></i></a>
-                        <a class="btn">February 2012</a>
-                        <a class="btn"><i class="icon-chevron-right"></i></a>
-                      </th>
-                    </tr>
-                    <tr>
-                        <th>Su</th>
-                        <th>Mo</th>
-                        <th>Tu</th>
-                        <th>We</th>
-                        <th>Th</th>
-                        <th>Fr</th>
-                        <th>Sa</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="muted">29</td>
-                        <td class="muted">30</td>
-                        <td class="muted">31</td>
-                        <td>1</td>
-                        <td>2</td>
-                        <td>3</td>
-                        <td>4</td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>6</td>
-                        <td>7</td>
-                        <td>8</td>
-                        <td>9</td>
-                        <td>10</td>
-                        <td>11</td>
-                    </tr>
-                    <tr>
-                        <td>12</td>
-                        <td>13</td>
-                        <td>14</td>
-                        <td>15</td>
-                        <td>16</td>
-                        <td>17</td>
-                        <td>18</td>
-                    </tr>
-                    <tr>
-                        <td>19</td>
-                        <td><strong>20</strong></td>
-                        <td>21</td>
-                        <td>22</td>
-                        <td>23</td>
-                        <td>24</td>
-                        <td>25</td>
-                    </tr>
-                    <tr>
-                        <td>26</td>
-                        <td>27</td>
-                        <td>28</td>
-                        <td>29</td>
-                        <td class="muted">1</td>
-                        <td class="muted">2</td>
-                        <td class="muted">3</td>
-                    </tr>
-                </tbody>
-            </table>    
-		</div>
-	</div>
+  <input type="text" ng-model="y" placeholder="Enter Year" class="input-group-append form-control col-md-6 col-sm-6"/>
+  </div>
 </div>
+
+  <div id="calendar">
+    <div></div>
+    <div id="cal-view"></div>
+  </div>
+</div>
+
+
+
+<style>
+    
+    #calendar h1{
+        text-align:center;
+    }
+
+    #calendar table {
+        width: 100%;
+        border: 0px solid grey;
+        border-collapse: collapse;
+        text-align: center;
+        font-size: 20px;
+    }
+
+    #calendar table th, #calendar h1 {
+      background-color: rgba(226, 226, 226, 0.658);
+        /* color: white; */
+        padding: 10px;
+        
+    }
+
+    #calendar table tr td {
+        padding: 10px;width: 50px;
+        background: rgba(20,20,20,.2);
+    }
+</style>
+

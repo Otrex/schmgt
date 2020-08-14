@@ -33,12 +33,15 @@ trait subQueries
 
     private function resetTable ()
     {
-        $this->table = $this->tmp;
+        if (!empty($this->tmp))
+        {
+            $this->table = $this->tmp;
+        }
     }
 
     public function all()
     {
-        //echo $this->sql;
+        $this->resetTable();
 
         return $this->performQuery(1);
     }
@@ -49,6 +52,8 @@ trait subQueries
 
         //echo $this->sql;
 
+        $this->resetTable();
+
         $ans = $this->performQuery(1);
 
         return $ans ? $ans[0] : null;
@@ -58,7 +63,7 @@ trait subQueries
     {
         $this->sql = $this->sql." limit $var; ";
 
-        echo $this->sql;
+        $this->resetTable();
 
         return $this->performQuery(1);
     }
@@ -82,6 +87,13 @@ trait subQueries
 
         return $this;
 
+    }
+
+    public function sortBy($column, $dec = "DESC")
+    {
+        $this->sql .= " order by `$column` $dec";
+
+        return $this;
     }
 
 }
@@ -265,6 +277,11 @@ class Query
     public function clearSQL(Type $var = null)
     {
         $this->sql = "";
+    }
+
+    public function getLastColumn($column)     
+    {
+        return $this->get($column)->sortBy($column)->one()[$column];
     }
 
     public function lastElement($fields)
