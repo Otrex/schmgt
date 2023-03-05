@@ -1,0 +1,106 @@
+<article ng-if="!value.memberId || value == undefined">
+
+    <h1 style="text-align: center;padding: 60px;"> No Data Found!! </h1>
+
+</article>
+<article class="member-data" ng-if="value.memberId">
+<!-- main-detp -->
+    <div class="row">
+
+        <div class="col-md-4">
+
+            <div class="member-detail">
+
+                <table width="100" >
+                    <th colspan="3">Personal Information</th>
+                    <tr>
+                        <td rowspan="7"><div class="member-img-placeholder"><img src="{{value.picture}}" alt=""></td>
+                    </tr>
+                    <tr>
+                        <td class="member-heading">ID: </td>
+                        <td>{{value.memberId}}</td>
+                    </tr>
+                    <tr>
+                        <td class="member-heading">Name: </td>
+                        <td>{{value.name | ucfirst}}</td>
+                    </tr>
+                    <tr ng-if="value.class">
+                        <td class="member-heading">Class: </td>
+                        <td>{{value.class | ucfirst}}</td>
+                    </tr>
+                    <tr ng-if="value.office">
+                        <td class="member-heading">Office: </td>
+                        <td>{{value.office | ucfirst}}</td>
+                    </tr>
+                    <tr ng-if="value.salary">
+                        <td class="member-heading">Salary: </td>
+                        <td>{{value.salary | ucfirst}}</td>
+                    </tr>
+                    <tr>
+                        <td class="member-heading">Date Of Birth: </td>
+                        <td>{{value.date_of_birth}}</td>
+                    </tr>
+                    <tr ng-if="value.relatives">
+                        <td class="member-heading">Relatives: </td>
+                        <td>{{value.relatives}}</td>
+                    </tr>
+
+                </table>
+            </div>
+        </div>
+
+        <div class="col-md-4" ng-if="value.class">
+
+            <div class="member-detail-report-sheet">
+
+                <table>
+                    <th colspan="4">
+                        <div class="member-img-placeholder">Subjects</div>
+                    </th>
+                    <tr class="member-heading">
+                        <td>Title</td>
+                        <td>1<sup>st</sup> Test</td>
+                        <td>2<sup>nd</sup> Test</td>
+                        <td>Exam</td>
+                    </tr>
+                    <tr ng-repeat="subject in value.reportSheet.subjects">
+                        <td>{{subject.name}}</td>
+                        <td>{{subject.testScores[0]}}</td>
+                        <td>{{subject.testScores[1]}}</td>
+                        <td>{{subject.examScore}}</td>
+                    </tr>
+
+                </table>
+            </div>
+
+        </div>
+        <div class="col-md-4">
+            <div class="member-detail-report-sheet">
+            <table>
+                <th colspan="6">
+                    <div class="member-img-placeholder">Transactions</div>
+                </th>
+                <tr class="member-heading">
+                    <td >Time</td>
+                    <td>Amount Paid</td>
+                    <td>Purpose</td>
+                    <td>Medium</td>
+                    <td>Type</td>
+                </tr>
+                <tr ng-repeat="rec in value.paymentPort">
+                    <td >{{rec.timestamp}}</td>
+                    <td>{{rec.amt}}</td>
+                    <td>{{rec.purpose | purpose}}</td>
+                    <td>{{rec.medium | medium}}</td>
+                    <td>{{rec.type | type}}</td>
+                </tr>
+
+            </table>
+            </div>
+
+        </div>
+    </div>
+    
+    <input type="button" ng-click="remove()" value="Withdraw" class="btn btn-primary" />
+    
+</article>

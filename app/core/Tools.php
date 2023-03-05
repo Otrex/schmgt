@@ -122,6 +122,28 @@
     {
         use Session, Redirect, InputManip;
 
+        public static function consoleLog($data, $key = false)
+        {
+            echo "<script> console.log('".json_encode($data)."')</script>";
+
+            if ($key) {die();}
+        }
+
+        public static function createNewId($model, $data="")
+        {
+            $yr = "".date("Y");
+
+            $yr = substr($yr, 2,2);
+
+            $lid = $model->getLastId($data) ?? "/-1";
+
+            $md = end(explode("/", $lid));
+
+            $md = intval($md) + 1;
+
+            return isset($model->staffTypes) ? sprintf("ccis/1/%02s/%'03s", $yr,$md): sprintf("ccis/0/%02s/%'03s", $yr,$md);
+        }
+
         public static function test($x = "Working")
         {
             return $x;
@@ -133,7 +155,9 @@
         }
  
         public static function getPosted(){
+
             return json_decode(file_get_contents("php://input"), true);
+
         }
 
         public static function uploadPath($x){
@@ -163,8 +187,8 @@
         public static function uploadFile($inputName, $type, $specified = "img")
         {
             if (isset($_FILES[$inputName]) && $_FILES[$inputName]['error'] === UPLOAD_ERR_OK) {
-
-                $fileTmpPath = $_FILES[$inputName]['tmp_name'];
+                extract($_FILES);
+                $fileTmpPath = $inputName['tmp_name'];
     
                 $fileName = $_FILES[$inputName]['name'];
     

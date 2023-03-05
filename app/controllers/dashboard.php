@@ -25,7 +25,7 @@ class Dashboard extends Controller
 
             $this->viewEXT (
                 "dashboard/index", $title, $data,
-                [],
+                ["../static/others/css/dashboard.css", "../static/others/css/calender-event.css"],
 
                 [
                     "id" => "main",
@@ -39,9 +39,9 @@ class Dashboard extends Controller
                    //"https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"
                 ],//add the js src to head
                 [
-                    "../static/dashboard/js/app-setup.js",
+                    "../static/dashboard/js/app-init.js",
                     "../static/dashboard/js/app-controllers.js",
-                    "../static/dashboard/js/app-directives.js"
+                    "../static/dashboard/js/app-directives1.js"
                 ]
             );
             //$this->view("dashboard/index", []);
@@ -49,16 +49,23 @@ class Dashboard extends Controller
         
     }
     
+    public function getTotalMember()
+    {
+        $school = $this->dbmodel("SchoolFactory");
+
+        echo json_encode($school->getTotals_array());
+    }
     // Dummy method
     
-    public function search()
+    public function searchMember()
     {
         Tools::isloggedIn();
 
-        $dummy = [
-            "by" => "memberId",
-            "value" => "cc"
-        ];
+        $dummy = $_POST;
+        // $dummy = [
+        //     "by" => "memberId",
+        //     "value" => "cc"
+        // ];
 
         $school = $this->dbmodel("SchoolFactory");
 
@@ -69,11 +76,24 @@ class Dashboard extends Controller
     {
         Tools::isloggedIn();
 
-        $dummy = ["class" => "LVL 1"];
+        //$dummy = ["class" => "LVL 1"];
+        $dummy = $_POST;
         
         $school = $this->dbmodel("SchoolFactory");
 
         echo json_encode($school->getClass($dummy["class"]));
+    }
+
+    public function getSClass()
+    {
+        Tools::isloggedIn();
+
+        //$dummy = ["class" => "LVL 1"];
+        $dummy = $_POST;
+        
+        $school = $this->dbmodel("SchoolFactory");
+
+        echo json_encode($school->getClass($dummy["class"])->students);
     }
 
 }

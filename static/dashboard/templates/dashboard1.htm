@@ -1,0 +1,71 @@
+<div class="breadcrumb" d-breadcrumb> Dashboard / Home </div>
+
+<section class="fit">
+
+    <div class="row">
+
+        <div class="col-md-4" >
+
+            <div class="card">
+                
+                <div panel="info-total" d-data="students.total" d-member-type="d='students'" d-total></div>
+            
+            </div>
+            
+
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="card">
+                
+                <div panel="info-total" d-data="teachers.total" d-member-type="d='teachers'" d-total></div>
+            
+            </div>
+            
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="card">
+                
+                <div panel="info-total" d-data="nonteachers.total" d-member-type="d='non teachers'" d-total></div>
+            
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-8" d-calender></div>
+
+        <div class="col-md-4" d-events></div>
+        
+    </div>
+
+    <div class="modal" tabindex="-1" role="dialog" ng-if="date">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Modal title</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>Modal body text goes here.</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary">Save changes</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+</section>
+
+
+
+

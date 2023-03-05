@@ -23,7 +23,7 @@
         <script src="<?=$src; ?>" rel="stylesheet"></script>
     <?php endforeach; ?>
 
-    <script src="../dependencies/jquery/jquery.min.css"></script>
+    <script src="../dependencies/jquery/jquery.min.js"></script>
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
 
     <!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" 

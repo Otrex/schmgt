@@ -2,13 +2,19 @@
 
 class StudentFactory extends Query
 {
-    public function getClassStudents($cls)
+    public function __construct($conn) 
     {
+        parent::__construct($conn);
+
         $std = new Student($this->conn);
         
-        $classMap = array_flip($std->getClassMap());
+        $this->classmap = array_flip($std->getClassMap());
 
-        $this->setTable($classMap[$cls]);
+    }
+
+    public function getClassStudents($cls)
+    {
+        $this->setTable($this->classmap[$cls]);
 
         $this->setFetchType(PDO::FETCH_CLASS, "tmpStudent");
 
@@ -32,22 +38,34 @@ class StudentFactory extends Query
         return $std;
     }
 
+    public function getLastId($class)
+    {
+        $table = $this->classmap[$class];
+
+        $this->setTable($table);
+
+        return $this->getLastColumn("memberId");
+    }
+
     public function search($by, $data)
     {
         $result = [];
 
-        $std = new Student($this->conn);
-
-        foreach ($std->getClassMap() as $key => $value) {
+        foreach ($this->classmap as $key => $value) {
             
-            $this->setTable($key);
+            $this->setTable($value);
 
-            $this->setFetchType(PDO::FETCH_CLASS, "tmpStudent");
+            $this->setFetchType(PDO::FETCH_CLASS, "tmpStudent", [$key]);
 
             $ans = $this->where("$by LIKE $data%", " LIKE ")
             ->get("name","date_of_birth","picture","memberId")->all();
 
             array_push($result, ...$ans);
+
+            // foreach ($result as $value) {
+                
+            //     $value->class = $key;
+            // }
         }
 
         return $result;
@@ -80,7 +98,7 @@ class StudentFactory extends Query
 
         }
 
-        $std->register();
+        return $std->register();
     }
 }
 

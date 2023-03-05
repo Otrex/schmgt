@@ -1,0 +1,30 @@
+<div class="search-align-right" ><div>
+
+    <div class="container-search">
+
+        <div class="input-group ml-auto">
+    
+            <input type="text" class="form-control" ng-change="search()" ng-model = "query.value" placeholder="Enter the Value you want to search for..." name="query" id="">
+
+
+            <select name="queryType" ng-model="query.by" ng-change="search()" class="input-group-append form-control col-md-3 col-sm-3">
+
+                <option value="memberId"> ID </option>
+
+                <option value="name"> Name </option>
+
+            </select>
+
+        </div>
+
+    </div>
+
+    <div class="container-search-result" ng-hide="result==[]">
+
+        <ul ng-repeat="data in result">
+
+            <li d-data="data" d-member-less></li>
+
+        </ul>
+    </div>
+</div></div>

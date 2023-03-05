@@ -1,0 +1,40 @@
+<div class="member-less" ng-click="view(member.memberId, member.class)">
+
+    <div class="row">
+
+        <div class="col-md-3">
+
+            <div class="container-member-less-img">
+
+                <img src="{{member.picuture_src}}" alt="{{name}}">
+
+            </div>
+
+        </div>
+
+        <div class="col-md-6">
+            <div d-middle>
+            <h5 >{{member.name}} 
+                <span ng-if="member.type != undefined">| <span class="member-class">{{member.class}}</span></span>
+            </h5>
+            </div>
+
+        </div>
+
+        <div ng-if="member.type === undefined" class="col-md-3">
+
+            <span class="member-less-marker member-paid-{{member.paid}}"></span>
+
+        </div>
+
+        <div ng-if="member.type != undefined" class="col-md-3">
+            
+            <span class="member-less-marker member-type-{{member.type}}"></span>
+        
+        </div>
+
+    </div>
+
+</div>
+
+

@@ -1,10 +1,11 @@
 body {
-    background-color: aquamarine;
+    background-color: lightblue;
 }
 
 .container-signup-login, .container-reset {
     padding:50px;
     background: rgba(0,0,0, .4);
+    margin-bottom: 50px;
 }
 
 .container-reset > form {

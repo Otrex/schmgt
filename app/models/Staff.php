@@ -14,7 +14,7 @@ class Staff extends Person
     {
         parent::__construct($conn);
 
-        $this->addDBfields("position", "salary");
+        $this->addDBfields("office", "salary", "type");
 
         $this->paymentPort = new Transactions($conn);
     }
@@ -29,12 +29,12 @@ class Staff extends Person
 
     public function register()
     {
-        $this->registerMember();
+        return $this->registerMember();
     }
 
     public function withdraw()
     {
-        $this->withdrawMember();
+        return $this->withdrawMember();
     }
 
     public function tmpSetup($id, $cls = "staff")

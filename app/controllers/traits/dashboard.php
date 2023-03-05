@@ -61,15 +61,13 @@ trait StudentDashboard
     {
         Tools::isloggedIn();
 
-        $dummy = [
-            "memberId" => "ccis/00002",
-            "class" => "LVL 3",
-            "name" => "Be Sams",
-            "date_of_birth" => "2020-07-01",
-            "picture"=>"default.jpg"
-        ];
+        $dummy = $_POST;
 
         $school = $this->dbmodel("StudentFactory");
+
+        $dummy["picture"] = $dummy["picture"] ?? "default.jpg";
+
+        $dummy["memberId"] = Tools::createNewId($school, $dummy["class"]);
 
         echo json_encode($school->registerStudent($dummy));
     }
@@ -101,7 +99,7 @@ trait StudentDashboard
     {
         Tools::isloggedIn();
 
-        $dummy = [];
+        $dummy = $_POST;
 
         $school = $this->dbmodel("StudentFactory");
 
@@ -115,7 +113,9 @@ trait StudentDashboard
     {
         Tools::isloggedIn();
 
-        $dummy = ["memberId" => "ccis/00002", "class" => "LVL 2"];
+        $dummy = $_POST;
+
+        // $dummy = ["memberId" => "ccis/00002", "class" => "LVL 2"];
 
         $school = $this->dbmodel("StudentFactory");
 
@@ -136,7 +136,9 @@ trait StaffDashboard
     {
         Tools::isloggedIn();
 
-        $dummy = ["type" => "t"];
+        $dummy = $_POST;
+
+        //$dummy = ["type" => "t"];
 
         $school = $this->dbmodel("StaffFactory");
 
@@ -150,16 +152,23 @@ trait StaffDashboard
     {
         Tools::isloggedIn();
 
-        $dummy = [
-            "memberId" => "ccis/00002",
-            "class" => "LVL 3",
-            "name" => "Be Sams",
-            "date_of_birth" => "2020-07-01",
-            "picture"=>"default.jpg"
-        ];
+        $dummy = $_POST;
 
-        $school = $this->dbmodel("StaffFactory");
+        $school = $this->dbmodel("StaffFactory"); 
 
+        $loc = ["c1","c2","c3","c4","c5","c6"];
+
+        $dummy["type"] = 1;
+
+        if (array_search(strtolower($dummy["office"]), $loc))
+        {
+            $dummy["type"] = 0;
+        }
+
+        $dummy["picture"] = $dummy["picture"] ?? "default.jpg";
+
+        $dummy["memberId"] = Tools::createNewId($school);
+//Tools::consoleLog($dummy, True);
         echo json_encode($school->registerStaff($dummy));
     }
 
@@ -180,6 +189,8 @@ trait StaffDashboard
     public function getStaff()
     {
         Tools::isloggedIn();
+
+        $dummy = $_POST;
 
         $school = $this->dbmodel("StaffFactory");
 
@@ -210,7 +221,7 @@ trait StaffDashboard
     {
         Tools::isloggedIn();
 
-        $dummy = [];
+        $dummy = $_POST;
 
         $school = $this->dbmodel("StaffFactory");
 
